@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+		<title>mtbkapp.github.io by mtbkapp</title>
+		<link rel="stylesheet" href="stylesheets/styles.css">
+		<link rel="stylesheet" href="stylesheets/pygment_trac.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="javascripts/respond.js"></script>
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<!--[if lt IE 8]>
+		<link rel="stylesheet" href="stylesheets/ie.css">
+		<![endif]-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+	</head>
+	<body>
+		<div id="header">
+			<nav>
+			<li class="fork"><a href="https://github.com/mtbkapp">View On GitHub</a></li>
+			</nav>
+		</div><!-- end header -->
+
+		<div class="wrapper">
+
+			<section>
+			<div id="title">
+				<h1>mtbkapp.github.io</h1>
+				<p>It seems like everyone has blogs, personal web sites, etc.  This is mine.  My name is Jason Kapp.  I'm a Software Engineer interested in a lot of things.  You can contact me via <a href="https://twitter.com/mtbkapp">twitter</a> or <a href="mailto:mtbkapp@gmail.com">email.</a></p>
+				<hr>
+				<span class="credits left">Project maintained by <a href="https://github.com/mtbkapp">mtbkapp</a></span>
+				<span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+			</div>
+
+			<p></p>
+			</section>
+
+			<article>
+			For the past year or so I've been working frustrated at my full time job by ColdFusion (the Railo flavor). When I first started working with it I couldn't articulate what was wrong with it. Now, I have few reasons:
+			<ul>
+				<li>The language is best described as a crippled JavaScript, script and regular CFML</li>
+				<li>Can't ahead of time compile code without running the entire Railo platform</li>
+				<li>CFML Lists</li>
+				<li>Only data structure literals are structs (more like maps) and arrays.</li>
+				<li>There is no dependency management. I don't think it would have been hard for the designers of Railo or Adobe ColdFusion to provide a way to package ColdFusion code into a jar. Integration with Maven would also make me smile.</li>
+				<li>Minimal Java Integration, I didn't think this was a problem until I learned about <a href="http://clojure.org">Clojure's java integration</a> with is phenomenal.  I especially like that with Protocols a Java type can participate in Clojure's abstractions.</li>
+				<li>CFML doesn't help build your web application. In the past I used the <a href="http://openacs.org/">OpenACS</a> platform to build web applications. It had the right tools user management, authentication, permissions, dependency management, forced separation of templating and logic, testing framework, and more. This is really it. ColdFusion doesn't give me sharp tools.  It could reuse some great Java libraries but to do that I would want better Java interop and the ability to use it with Maven.</li>
+			</ul>
+			<p>However, there is "no silver bullet".  There are trade offs and a continuum of expressiveness that is often subjective.  ColdFusion is very easy to get up and running and has been the base of many applications.  I just think there are better tools available.</p>
+			</article>
+		</div>
+		<!--[if !IE]><script>fixScale(document);</script><![endif]-->
+	</body>
+</html>
