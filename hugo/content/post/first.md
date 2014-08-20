@@ -15,6 +15,6 @@ he has a cool and fast static site generator called
 [Hugo](http://hugo.spf13.com/). I decided to use it for this blog. Also I'm 
 currently not that great at CSS so I used [Kube](http://imperavi.com/kube/) 
 for that. I think Hugo and Kube and a lot of other things are pretty dang cool
-and am glad that their author's have shared their work. 
+and am glad that their authors have shared their work. 
 
 
