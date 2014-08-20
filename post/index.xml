@@ -3,7 +3,7 @@
   <channel>
       <title>Posts on mtbkapp&#39;s blog </title>
       <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://localhost:1313/post/index.xml</link>
+    <link>http://mtbkapp.github.io/post/index.xml</link>
     <language>en-us</language>
     
     
@@ -11,10 +11,10 @@
     
     <item>
       <title>First Post</title>
-      <link>http://localhost:1313/post/first</link>
+      <link>http://mtbkapp.github.io/post/first</link>
       <pubDate>Tue, 19 Aug 2014 09:53:19 UTC</pubDate>
       
-      <guid>http://localhost:1313/post/first</guid>
+      <guid>http://mtbkapp.github.io/post/first</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve wanted to have a blog for a while now and am finally getting to it. Do I
 care if anyone reads it? Nope. It&amp;rsquo;s mainly for me to remember things that I&amp;rsquo;ve
 done that I think are interesting. I guess it&amp;rsquo;s possible for someone to stumble
