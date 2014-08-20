@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Recent Content on mtbkapp&#39;s blog </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://localhost:1313/index.xml</link>
+    <language>en-us</language>
+    
+    
+    <updated>Tue, 19 Aug 2014 09:53:19 UTC</updated>
+    
+    <item>
+      <title>First Post</title>
+      <link>http://localhost:1313/post/first</link>
+      <pubDate>Tue, 19 Aug 2014 09:53:19 UTC</pubDate>
+      
+      <guid>http://localhost:1313/post/first</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve wanted to have a blog for a while now and am finally getting to it. Do I
+care if anyone reads it? Nope. It&amp;rsquo;s mainly for me to remember things that I&amp;rsquo;ve
+done that I think are interesting. I guess it&amp;rsquo;s possible for someone to stumble
+across this and find something useful. It&amp;rsquo;s also possible that no one besides
+me will ever read it.&lt;/p&gt;
+
+&lt;p&gt;I met &lt;a href=&#34;http://spf13.com/&#34;&gt;spf13&lt;/a&gt; at Strange Loop last year and found out that
+he has a cool and fast static site generator called
+&lt;a href=&#34;http://hugo.spf13.com/&#34;&gt;Hugo&lt;/a&gt;. I decided to use it for this blog. Also I&amp;rsquo;m
+currently not that great at CSS so I used &lt;a href=&#34;http://imperavi.com/kube/&#34;&gt;Kube&lt;/a&gt;
+for that. I think Hugo and Kube and a lot of other things are pretty dang cool
+and am glad that their author&amp;rsquo;s have shared their work.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
