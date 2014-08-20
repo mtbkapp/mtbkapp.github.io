@@ -1,0 +1,11 @@
+name = "KubeSimple"
+license = "MIT"
+source_repo = ""
+description = "A first try at a Hugo theme."
+tags = ["blog", "company"]
+features = ["blog", ]
+
+[author]
+    name = "mtbkapp"
+    email = "mtbkapp@gmail.com"
+    url = "https://mtbkapp.github.io"
