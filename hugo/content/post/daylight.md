@@ -1,6 +1,7 @@
 +++
 title = "Daylight"
 date = 2014-09-16T10:45:41Z
+description = "Finding how much the amount of daylight changes in a year."
 +++
 
 A colleague challenged my assumption that the amount of daylight in a day 
