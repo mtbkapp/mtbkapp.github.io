@@ -1,0 +1,17 @@
+#vis svg { 
+    border: solid gray 1px;
+}
+
+#vis .line {
+    fill: none;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+#vis .axis path,
+#vis .axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+

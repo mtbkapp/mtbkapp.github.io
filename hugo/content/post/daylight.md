@@ -1,0 +1,177 @@
++++
+title = "Daylight"
+date = 2014-09-16T10:45:41Z
++++
+
+A colleague challenged my assumption that the amount of daylight in a day 
+changes at the same rate. Something like 2 minutes per day. I wanted to find 
+out what actually happens. 
+
+The United States Naval Observatory has pages to get the sun rise and sun set
+times for a year [here](http://aa.usno.navy.mil/data/docs/RS_OneYear.php). The
+data for Salt Lake City, Utah is shown below. The data show the rise/set times
+for each day in the year. The data are not adjusted for standard daylight time 
+,and thats good in this case.
+
+<pre>
+       Jan.       Feb.       Mar.       Apr.       May        June       July       Aug.       Sept.      Oct.       Nov.       Dec.
+Day Rise  Set  Rise  Set  Rise  Set  Rise  Set  Rise  Set  Rise  Set  Rise  Set  Rise  Set  Rise  Set  Rise  Set  Rise  Set  Rise  Set
+     h m  h m   h m  h m   h m  h m   h m  h m   h m  h m   h m  h m   h m  h m   h m  h m   h m  h m   h m  h m   h m  h m   h m  h m
+01  0752 1711  0737 1745  0701 1819  0611 1852  0526 1924  0458 1953  0500 2003  0524 1943  0555 1900  0624 1809  0658 1724  0732 1701
+02  0752 1712  0736 1746  0700 1820  0609 1853  0525 1925  0458 1953  0501 2002  0525 1942  0556 1858  0625 1808  0659 1722  0733 1700
+03  0752 1713  0735 1748  0658 1821  0608 1854  0523 1926  0458 1954  0501 2002  0526 1941  0557 1856  0626 1806  0700 1721  0734 1700
+04  0752 1713  0734 1749  0657 1822  0606 1856  0522 1927  0457 1955  0502 2002  0527 1939  0557 1855  0627 1804  0702 1720  0735 1700
+05  0752 1714  0733 1750  0655 1823  0604 1857  0521 1928  0457 1955  0502 2002  0528 1938  0558 1853  0628 1803  0703 1719  0736 1700
+06  0752 1715  0732 1751  0654 1824  0603 1858  0520 1929  0457 1956  0503 2002  0529 1937  0559 1851  0629 1801  0704 1718  0737 1700
+07  0752 1716  0731 1753  0652 1826  0601 1859  0519 1930  0456 1957  0503 2001  0530 1936  0600 1850  0630 1800  0705 1717  0738 1700
+08  0752 1717  0730 1754  0650 1827  0600 1900  0518 1931  0456 1957  0504 2001  0531 1935  0601 1848  0631 1758  0706 1716  0739 1700
+09  0751 1718  0729 1755  0649 1828  0558 1901  0516 1932  0456 1958  0505 2000  0532 1933  0602 1846  0632 1756  0707 1715  0740 1700
+10  0751 1719  0728 1756  0647 1829  0556 1902  0515 1933  0456 1958  0505 2000  0533 1932  0603 1845  0633 1755  0709 1714  0741 1700
+11  0751 1720  0726 1758  0646 1830  0555 1903  0514 1934  0456 1959  0506 2000  0534 1931  0604 1843  0635 1753  0710 1713  0742 1700
+12  0751 1722  0725 1759  0644 1831  0553 1904  0513 1935  0456 1959  0507 1959  0535 1929  0605 1841  0636 1752  0711 1712  0742 1700
+13  0750 1723  0724 1800  0642 1832  0552 1905  0512 1936  0456 2000  0508 1959  0536 1928  0606 1840  0637 1750  0712 1711  0743 1700
+14  0750 1724  0723 1801  0641 1833  0550 1906  0511 1937  0456 2000  0508 1958  0537 1927  0607 1838  0638 1749  0713 1710  0744 1701
+15  0749 1725  0721 1802  0639 1834  0549 1907  0510 1938  0456 2001  0509 1957  0538 1925  0608 1836  0639 1747  0714 1709  0745 1701
+16  0749 1726  0720 1804  0637 1835  0547 1908  0509 1939  0456 2001  0510 1957  0539 1924  0609 1835  0640 1746  0716 1708  0745 1701
+17  0749 1727  0719 1805  0636 1836  0546 1909  0508 1940  0456 2001  0511 1956  0540 1923  0610 1833  0641 1744  0717 1708  0746 1701
+18  0748 1728  0717 1806  0634 1838  0544 1910  0508 1941  0456 2002  0512 1955  0541 1921  0611 1831  0642 1743  0718 1707  0747 1702
+19  0748 1729  0716 1807  0632 1839  0543 1911  0507 1942  0456 2002  0512 1955  0542 1920  0612 1830  0643 1741  0719 1706  0747 1702
+20  0747 1731  0715 1808  0631 1840  0541 1912  0506 1943  0456 2002  0513 1954  0543 1918  0613 1828  0644 1740  0720 1706  0748 1703
+21  0746 1732  0713 1810  0629 1841  0540 1913  0505 1944  0456 2002  0514 1953  0544 1917  0614 1826  0645 1738  0721 1705  0748 1703
+22  0746 1733  0712 1811  0627 1842  0538 1914  0504 1945  0457 2002  0515 1952  0545 1915  0615 1824  0647 1737  0723 1704  0749 1704
+23  0745 1734  0710 1812  0626 1843  0537 1915  0504 1945  0457 2003  0516 1952  0546 1914  0616 1823  0648 1735  0724 1704  0749 1704
+24  0744 1735  0709 1813  0624 1844  0535 1916  0503 1946  0457 2003  0517 1951  0547 1912  0617 1821  0649 1734  0725 1703  0750 1705
+25  0744 1737  0707 1814  0622 1845  0534 1918  0502 1947  0457 2003  0518 1950  0548 1911  0618 1819  0650 1733  0726 1703  0750 1705
+26  0743 1738  0706 1815  0621 1846  0533 1919  0502 1948  0458 2003  0519 1949  0549 1909  0619 1818  0651 1731  0727 1702  0750 1706
+27  0742 1739  0704 1817  0619 1847  0531 1920  0501 1949  0458 2003  0519 1948  0550 1908  0620 1816  0652 1730  0728 1702  0751 1707
+28  0741 1740  0703 1818  0617 1848  0530 1921  0500 1950  0459 2003  0520 1947  0551 1906  0621 1814  0653 1729  0729 1702  0751 1707
+29  0740 1742             0616 1849  0529 1922  0500 1950  0459 2003  0521 1946  0552 1904  0622 1813  0655 1727  0730 1701  0751 1708
+30  0739 1743             0614 1850  0527 1923  0459 1951  0500 2003  0522 1945  0553 1903  0623 1811  0656 1726  0731 1701  0751 1709
+31  0738 1744             0613 1851             0459 1952             0523 1944  0554 1901             0657 1725             0752 1710
+</pre> 
+
+I'm going to show how I process this data in Clojure and then visualize it with
+JavaScript using the [D3.js](http://d3js.org/) library. I think this a pretty
+good example of using Clojure's [thread macro](http://clojure.github.io/clojure/clojure.core-api.html#clojure.core/->>).
+The first thing I did was read the above data from a previously saved file, 
+drop the first 3 rows, then use a regular expression to get all the columns 
+of times, and finally I partition the times into pairs. I include the columns 
+that don't have any times so that each column has the same number of rows. 
+That gave me a seq that has a seq for each row.  Each row seq contains a two 
+tuple like seq that contains the sunrise and sunset time for each day. I'm not 
+that interested in how much daylight changes between two specific days so I 
+don't hold on to that date information.
+
+<script type="text/javascript" src="https://gist.github.com/mtbkapp/a9fb0d6de53e56aa74ad.js?file=pre-rotate"></script>
+
+<pre>
+((("0752" "1711")
+  ("0737" "1745")
+  ("0701" "1819")
+  ("0611" "1852")
+  ("0526" "1924")
+  ("0458" "1953")
+  ("0500" "2003")
+  ("0524" "1943")
+  ("0555" "1900")
+  ("0624" "1809")
+  ("0658" "1724")
+  ("0732" "1701"))
+  ...)
+</pre>
+
+However I don't want seqs for times for each row--I want each column. So the 
+next function in the chain does this transformation. This 
+<code>rotate-coll</code> function just maps over the range from 0 to the number
+of columns and plucks each pair out of each column and constructs a new seq.
+
+<script type="text/javascript" src="https://gist.github.com/mtbkapp/a9fb0d6de53e56aa74ad.js?file=rotate-coll"></script>
+
+<pre>
+((("0752" "1711")
+  ("0752" "1712")
+  ("0752" "1713")
+  ("0752" "1713")
+  ("0752" "1714")
+  ("0752" "1715")
+  ("0752" "1716")
+  ("0752" "1717")
+  ("0751" "1718")
+  ("0751" "1719")
+  ("0751" "1720")
+  ("0751" "1722")
+  ("0750" "1723")
+  ("0750" "1724")
+  ("0749" "1725")
+  ("0749" "1726")
+  ("0749" "1727")
+  ("0748" "1728")
+  ("0748" "1729")
+  ("0747" "1731")
+  ("0746" "1732")
+  ("0746" "1733")
+  ("0745" "1734")
+  ("0744" "1735")
+  ("0744" "1737")
+  ("0743" "1738")
+  ("0742" "1739")
+  ("0741" "1740")
+  ("0740" "1742")
+  ("0739" "1743")
+  ("0738" "1744"))
+  ...)
+</pre>
+
+I'm almost done with the data wrangling part of answering this question. Next
+I just want to <code>flatten</code> the seqs down to one seq and then remove 
+the empty strings that occur for months with less than 31 days. Up till now 
+the code looks like the following and produces the following output.
+
+<script type="text/javascript" src="https://gist.github.com/mtbkapp/a9fb0d6de53e56aa74ad.js?file=post-flatten-and-filter"></script>
+
+<pre>
+("0752" "1711" "0752" "1712" "0752" "1713" "0752" "1713" ...) 
+</pre>
+
+So the next thing I need to do is convert these times into actual numbers. I 
+picked minutes. It's a simple calculation of getting the minutes by 
+<code>mod</code>-ing the time by 100 and then adding the hours by taking the 
+time dividing by 100 then multiplying by 60. I intentionally use the 
+<code>quot</code> function instead of the <code>/</code> function to truncate 
+the remainder instead of converting it to decimal number. Then to pair the 
+sunrise and sunset times again using the <code>partition</code> function again. 
+The next thing is to do the actual subtraction of sunrise from sunset. The 
+output is now a seq of numbers that represent the minutes in each day of the 
+year. A count of the seq confirms this.
+
+<script type="text/javascript" src="https://gist.github.com/mtbkapp/a9fb0d6de53e56aa74ad.js?file=first-calc"></script>
+
+<pre>
+(559 560 561 561 562 563 564 ...)
+</pre>
+
+The next thing I want to do is to be able to **see** the differences. To do this I 
+first will convert the data to JSON and so I can import it with D3 and write a 
+visualization.
+
+<script type="text/javascript" src="https://gist.github.com/mtbkapp/a9fb0d6de53e56aa74ad.js?file=all-clj"></script>
+
+<pre>
+[559,560,561,561,562,563,564, ...]</pre>
+</pre>
+
+Below is the line graph I made. It shows easily that the amount of daylight in 
+a day in Salt Lake City doesn't change a lot around equinoxes and changes the 
+most during the solstices. 
+
+<p id="vis"></p>
+<link rel="stylesheet" type="text/css" href="/daylight/style.css">
+<script type="text/javascript" src="/js/d3.min.js"></script>
+<script type="text/javascript" src="/daylight/vis.js"></script>
+
+The JavaScript that generates the line graph is shown below. The data generated
+previously is imported as <code>duration.json</code>. 
+<script type="text/javascript" src="https://gist.github.com/mtbkapp/a9fb0d6de53e56aa74ad.js?file=vis"></script>
+
+
+
