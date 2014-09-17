@@ -7,7 +7,63 @@
     <language>en-us</language>
     
     
-    <updated>Tue, 16 Sep 2014 10:45:41 UTC</updated>
+    <updated>Wed, 17 Sep 2014 06:18:06 MDT</updated>
+    
+    <item>
+      <title>(Mac/G)Vim and Clojure</title>
+      <link>http://mtbkapp.github.io/post/clojure-vim/</link>
+      <pubDate>Wed, 17 Sep 2014 06:18:06 MDT</pubDate>
+      
+      <guid>http://mtbkapp.github.io/post/clojure-vim/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve been using Clojure for a little while now (about 2 years). I&amp;rsquo;ve used Vim
+for longer in the form of GVim on Windows/Linus and MacVim on Mac OS X and of
+course vim at the console. For a bit I didn&amp;rsquo;t have a good setup to combine them.
+Then after geting into Clojure a little longer settled on a Vim/Clojure
+setup. I use:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/tpope/vim-pathogen&#34;&gt;Pathogen&lt;/a&gt; for plugin management&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/tpope/vim-fireplace&#34;&gt;vim-fireplace&lt;/a&gt; for connecting to a
+nrepl.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/guns/vim-clojure-static&#34;&gt;vim-clojure-static&lt;/a&gt; for syntax
+highlighting, indentation, etc.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/altercation/vim-colors-solarized&#34;&gt;vim-colors-solarized&lt;/a&gt;
+for awesome easy to read colors in dark and bright situations. Choosing colors
+is hard and Ethen Schoonover, the author of vim-colors-solarized, has
+done a lot of hard &lt;a href=&#34;http://ethanschoonover.com/solarized&#34;&gt;work&lt;/a&gt; to make it
+great.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Installing these plugins was just as easy as following the instructions in each
+project&amp;rsquo;s readme file. Tim Pope&amp;rsquo;s Pathogen really helps with this. I wouldn&amp;rsquo;t
+run Vim with plugins if it didn&amp;rsquo;t exist.  One of the great things about Clojure
+is the possibility of &lt;em&gt;interactive developement&lt;/em&gt;.  Vim-fireplace brings this
+idea to Vim. It will automatically read the &lt;code&gt;.nrepl-port&lt;/code&gt; file and
+connect if that file doesn&amp;rsquo;t exist in the project (because an nrepl hasn&amp;rsquo;t been
+started or if I want to connect to a one off repl) then the
+&lt;code&gt;:Connect&lt;/code&gt; command can be used. After that there are 2 commands I
+use the most: the evaluate command &lt;code&gt;cpp&lt;/code&gt; and the standard command to
+ lookup documentation &lt;code&gt;K&lt;/code&gt;. The &lt;code&gt;cpp&lt;/code&gt; command just sends
+the form under the cursor to the nrepl server for evaluation and displays the
+results. The &lt;code&gt;K&lt;/code&gt; command will simply evaluate &lt;code&gt;(clojure.repl/doc
+symbol-under-cursor)&lt;/code&gt;. More usage and more features can be found on the
+individual project pages. Having the ability to evaluate code and get
+documentation right in Vim is great and very productive.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve done work on Clojure projects that use
+&lt;a href=&#34;https://github.com/ring-clojure/ring&#34;&gt;Ring&lt;/a&gt; and the
+&lt;a href=&#34;https://github.com/weavejester/lein-ring&#34;&gt;lein-ring&lt;/a&gt; plugin.
+Lein-ring doesn&amp;rsquo;t start an nrepl by default but it can be configured to do so.
+A configuration in a &lt;code&gt;project.clj&lt;/code&gt; file like the one below would
+work:&lt;/p&gt;
+
+&lt;pre&gt;
+:ring {:handler your.handler.ns.here
+       :port 8888
+       :nrepl {:start? true}}
+&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Daylight</title>

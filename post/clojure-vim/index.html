@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="http://mtbkapp.github.io/css/kube.min.css">
+<link rel="stylesheet" href="http://mtbkapp.github.io/css/style.css">
+
+<title>(Mac/G)Vim and Clojure &middot; mtbkapp</title>
+
+</head>
+
+<body>
+<div class="wrap">
+    <header id="page-header">
+        <hgroup id="title">
+        <h1><a href="/">mtbkapp</a></h1>
+        <h6 class="subheading">A blog about stuff I wanted to write about...</h6>
+        </hgroup>
+        <nav id="contact" class="navbar">
+            <ul>
+                <li>Twitter <a href="https://twitter.com/mtbkapp">@mtbkapp</a></li>
+                <li>Github <a href="https://github.com/mtbkapp">mtbkapp</a></li>
+            </ul>
+        </nav>
+    </header>
+</div>
+
+
+
+<div class="wrap content">
+    <hgroup>
+        <h1>(Mac/G)Vim and Clojure</h1>
+        <h1 class="subheading">17 Sep 2014</h1>
+    </hgroup>
+    <p>I&rsquo;ve been using Clojure for a little while now (about 2 years). I&rsquo;ve used Vim
+for longer in the form of GVim on Windows/Linus and MacVim on Mac OS X and of
+course vim at the console. For a bit I didn&rsquo;t have a good setup to combine them.
+Then after geting into Clojure a little longer settled on a Vim/Clojure
+setup. I use:</p>
+
+<ul>
+<li><a href="https://github.com/tpope/vim-pathogen">Pathogen</a> for plugin management</li>
+<li><a href="https://github.com/tpope/vim-fireplace">vim-fireplace</a> for connecting to a
+nrepl.</li>
+<li><a href="https://github.com/guns/vim-clojure-static">vim-clojure-static</a> for syntax
+highlighting, indentation, etc.</li>
+<li><a href="https://github.com/altercation/vim-colors-solarized">vim-colors-solarized</a>
+for awesome easy to read colors in dark and bright situations. Choosing colors
+is hard and Ethen Schoonover, the author of vim-colors-solarized, has
+done a lot of hard <a href="http://ethanschoonover.com/solarized">work</a> to make it
+great.</li>
+</ul>
+
+<p>Installing these plugins was just as easy as following the instructions in each
+project&rsquo;s readme file. Tim Pope&rsquo;s Pathogen really helps with this. I wouldn&rsquo;t
+run Vim with plugins if it didn&rsquo;t exist.  One of the great things about Clojure
+is the possibility of <em>interactive developement</em>.  Vim-fireplace brings this
+idea to Vim. It will automatically read the <code>.nrepl-port</code> file and
+connect if that file doesn&rsquo;t exist in the project (because an nrepl hasn&rsquo;t been
+started or if I want to connect to a one off repl) then the
+<code>:Connect</code> command can be used. After that there are 2 commands I
+use the most: the evaluate command <code>cpp</code> and the standard command to
+ lookup documentation <code>K</code>. The <code>cpp</code> command just sends
+the form under the cursor to the nrepl server for evaluation and displays the
+results. The <code>K</code> command will simply evaluate <code>(clojure.repl/doc
+symbol-under-cursor)</code>. More usage and more features can be found on the
+individual project pages. Having the ability to evaluate code and get
+documentation right in Vim is great and very productive.</p>
+
+<p>I&rsquo;ve done work on Clojure projects that use
+<a href="https://github.com/ring-clojure/ring">Ring</a> and the
+<a href="https://github.com/weavejester/lein-ring">lein-ring</a> plugin.
+Lein-ring doesn&rsquo;t start an nrepl by default but it can be configured to do so.
+A configuration in a <code>project.clj</code> file like the one below would
+work:</p>
+
+<pre>
+:ring {:handler your.handler.ns.here
+       :port 8888
+       :nrepl {:start? true}}
+</pre>
+
+</div>
+
+</body>
+</html>
