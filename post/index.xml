@@ -7,7 +7,29 @@
     <language>en-us</language>
     
     
-    <updated>Wed, 17 Sep 2014 06:18:06 MDT</updated>
+    <updated>Tue, 21 Oct 2014 20:15:59 MDT</updated>
+    
+    <item>
+      <title>More Daylight</title>
+      <link>http://mtbkapp.github.io/post/more-daylight/</link>
+      <pubDate>Tue, 21 Oct 2014 20:15:59 MDT</pubDate>
+      
+      <guid>http://mtbkapp.github.io/post/more-daylight/</guid>
+      <description>&lt;p&gt;In a previous &lt;a href=&#34;../daylight&#34;&gt;post&lt;/a&gt; I wrote a tiny bit of
+&lt;a href=&#34;http://clojure.org&#34;&gt;Clojure&lt;/a&gt; and some JavaScript/&lt;a href=&#34;http://d3js.org&#34;&gt;D3&lt;/a&gt; to
+&lt;em&gt;see&lt;/em&gt; how the amount of daylight changes through out the year in Salt Lake City.
+I wanted to see how daylight changes in a couple of other places so I changed
+the code from the last post and wrote the following.&lt;/p&gt;
+
+&lt;p&gt;&lt;p id=&#34;vis&#34;&gt;&lt;/p&gt;
+&lt;link rel=&#34;stylesheet&#34; type=&#34;text/css&#34; href=&#34;/more-daylight/style.css&#34;&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;/js/d3.min.js&#34;&gt;&lt;/script&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;/js/underscore.min.js&#34;&gt;&lt;/script&gt;
+&lt;script type=&#34;text/javascript&#34; src=&#34;/more-daylight/vis.js&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;script type=&#34;text/javascript&#34; src=&#34;https://gist.github.com/mtbkapp/9bb0dab4f1a3f38f533f.js&#34;&gt;&lt;/script&gt;
+</description>
+    </item>
     
     <item>
       <title>(Mac/G)Vim and Clojure</title>

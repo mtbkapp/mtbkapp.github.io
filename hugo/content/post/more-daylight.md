@@ -1,6 +1,5 @@
 +++
 date = "2014-10-21T20:15:59-06:00"
-draft = true
 title = "More Daylight"
 description = "Vis of daylight changes over a year for selected cites in the US"
 
