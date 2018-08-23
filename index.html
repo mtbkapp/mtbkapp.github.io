@@ -31,7 +31,7 @@
   <meta property="og:type" content="website" />
   
   
-  <meta name="generator" content="Hugo 0.42" /><link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+  <meta name="generator" content="Hugo 0.44" /><link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
   <link rel="stylesheet" href="https://mtbkapp.github.io/css/style.css" />
   <link href="https://mtbkapp.github.io/index.xml" rel="alternate" type="application/rss+xml" title="mtbkapp" />
   
@@ -59,6 +59,28 @@
 
 <article class="c-article p-list-article">
   <header>
+    <h2 class="c-title c-article__title"><a href="https://mtbkapp.github.io/posts/first_6502/content/">A bit of 6502 Assembly</a></h2>
+    <p class="c-article__meta">
+      Posted on
+      <time datetime="2018-08-23T14:19:31-04:00">
+        Aug 23, 2018
+      </time>
+    </p>
+  </header>
+  <div class="c-article__summary">
+    For some time I&rsquo;ve been thinking about how fun it would be to build a copy of an old Moon Landing game. I recently discovered that there are tools for writing NES roms from 6502 assembly, C, and JavaScript. I&rsquo;ve got an emulator running on a Raspberry Pi 2 with a SNES controller. I think it would be super fun to build and play a homemade game on it.
+To that end I&rsquo;ve gone through Nick Morgan&rsquo;s Easy 6502 Tutorial and it was a lot of fun.
+  </div>
+  
+  <a href="https://mtbkapp.github.io/posts/first_6502/content/" class="c-article__btn p-list-article__btn">Read more</a></li>
+  
+</article>
+
+
+
+
+<article class="c-article p-list-article">
+  <header>
     <h2 class="c-title c-article__title"><a href="https://mtbkapp.github.io/posts/dataomic-datalog-rollup/content/">Datomic Datalog Rollup</a></h2>
     <p class="c-article__meta">
       Posted on
@@ -68,8 +90,8 @@
     </p>
   </header>
   <div class="c-article__summary">
-    Recently I&rsquo;ve been looking at different ways to calculate roll-up aggregations in a tree of data. These calculations can be done with recursive algorithms. Here I show an example in Datomic.
-The datomic schema. Just three attributes: :o/name, :o/parent, and :o/x (the rollup field). [{:db/ident :o/name :db/valueType :db.type/string :db/cardinality :db.cardinality/one :db/unique :db.unique/value :db/id #db/id[:db.part/db] :db.install/_attribute :db.part/db} {:db/ident :o/parent :db/valueType :db.type/ref :db/cardinality :db.cardinality/one :db/id #db/id[:db.part/db] :db.install/_attribute :db.part/db} {:db/ident :o/x :db/valueType :db.
+    For some reason recursion is either easy or difficult for me, rarely in between. Recently I&rsquo;ve been looking at different ways to calculate roll-up aggregations in a tree of data. These calculations can be done recursive algorithms. Here I show an example in Datomic.
+The datomic schema. Just three attributes: :o/name, :o/parent, and :o/x (the rollup field). [{:db/ident :o/name :db/valueType :db.type/string :db/cardinality :db.cardinality/one :db/unique :db.unique/value :db/id #db/id[:db.part/db] :db.install/_attribute :db.part/db} {:db/ident :o/parent :db/valueType :db.
   </div>
   
   <a href="https://mtbkapp.github.io/posts/dataomic-datalog-rollup/content/" class="c-article__btn p-list-article__btn">Read more</a></li>
