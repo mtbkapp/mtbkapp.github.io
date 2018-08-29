@@ -6,10 +6,20 @@
     <description>Recent content on mtbkapp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 23 Aug 2018 14:19:31 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 29 Aug 2018 14:19:31 -0400</lastBuildDate>
     
 	<atom:link href="https://mtbkapp.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Initial NES / 6502 Dev Machine Setup</title>
+      <link>https://mtbkapp.github.io/posts/6502_dev_machine/</link>
+      <pubDate>Wed, 29 Aug 2018 14:19:31 -0400</pubDate>
+      
+      <guid>https://mtbkapp.github.io/posts/6502_dev_machine/</guid>
+      <description>I looked for lists online of tools I&amp;rsquo;ll need to build my Moon Lander game and found the following from FRITZVD. Below is what I&amp;rsquo;ve got setup so far:
+ VirtualBox VM w/ the minimal install of Ubuntu Mate (Mate is lightweight and runs well in a VM) Default gVim from apt My Vim setup from my kapp-vim repo The NESASM assembler, built from source. Gimp for making graphics. Although I think I&amp;rsquo;ll be just using white and black for the initial version.</description>
+    </item>
     
     <item>
       <title>A bit of 6502 Assembly</title>
@@ -27,8 +37,8 @@ To that end I&amp;rsquo;ve gone through Nick Morgan&amp;rsquo;s Easy 6502 Tutori
       <pubDate>Thu, 17 May 2018 10:19:50 -0600</pubDate>
       
       <guid>https://mtbkapp.github.io/posts/dataomic-datalog-rollup/content/</guid>
-      <description>For some reason recursion is either easy or difficult for me, rarely in between. Recently I&amp;rsquo;ve been looking at different ways to calculate roll-up aggregations in a tree of data. These calculations can be done recursive algorithms. Here I show an example in Datomic.
-The datomic schema. Just three attributes: :o/name, :o/parent, and :o/x (the rollup field). [{:db/ident :o/name :db/valueType :db.type/string :db/cardinality :db.cardinality/one :db/unique :db.unique/value :db/id #db/id[:db.part/db] :db.install/_attribute :db.part/db} {:db/ident :o/parent :db/valueType :db.</description>
+      <description>Recently I&amp;rsquo;ve been looking at different ways to calculate roll-up aggregations in a tree of data. These calculations can be done with recursive algorithms. Here I show an example in Datomic.
+The datomic schema. Just three attributes: :o/name, :o/parent, and :o/x (the rollup field). [{:db/ident :o/name :db/valueType :db.type/string :db/cardinality :db.cardinality/one :db/unique :db.unique/value :db/id #db/id[:db.part/db] :db.install/_attribute :db.part/db} {:db/ident :o/parent :db/valueType :db.type/ref :db/cardinality :db.cardinality/one :db/id #db/id[:db.part/db] :db.install/_attribute :db.part/db} {:db/ident :o/x :db/valueType :db.</description>
     </item>
     
     <item>

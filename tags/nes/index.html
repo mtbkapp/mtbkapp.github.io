@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
   
-  <title>mtbkapp</title>
-  <meta property="og:title" content="mtbkapp" />
-  <meta name="twitter:title" content="mtbkapp" />
+  <title>Nes</title>
+  <meta property="og:title" content="Nes" />
+  <meta name="twitter:title" content="Nes" />
   
 
   
@@ -17,7 +17,7 @@
 
   <meta name="author" content=""/>
   <meta property="og:site_name" content="mtbkapp" />
-  <meta property="og:url" content="https://mtbkapp.github.io/" />
+  <meta property="og:url" content="https://mtbkapp.github.io/tags/nes/" />
 
   
   <meta name="twitter:card" content="summary" />
@@ -33,8 +33,6 @@
   
   <meta name="generator" content="Hugo 0.44" /><link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
   <link rel="stylesheet" href="https://mtbkapp.github.io/css/style.css" />
-  <link href="https://mtbkapp.github.io/index.xml" rel="alternate" type="application/rss+xml" title="mtbkapp" />
-  
   <script type="text/javascript" src="https://mtbkapp.github.io/js/bundle.js"></script>
   
 
@@ -55,6 +53,7 @@
   </header>
   <main id="main" class="l-main">
 
+<h2 class="c-title p-tag-title">Nes</h2>
 
 
 <article class="c-article p-list-article">
@@ -95,49 +94,6 @@ To that end I&rsquo;ve gone through Nick Morgan&rsquo;s Easy 6502 Tutorial and i
   </div>
   
   <a href="https://mtbkapp.github.io/posts/first_6502/content/" class="c-article__btn p-list-article__btn">Read more</a></li>
-  
-</article>
-
-
-
-
-<article class="c-article p-list-article">
-  <header>
-    <h2 class="c-title c-article__title"><a href="https://mtbkapp.github.io/posts/dataomic-datalog-rollup/content/">Datomic Datalog Rollup</a></h2>
-    <p class="c-article__meta">
-      Posted on
-      <time datetime="2018-05-17T10:19:50-06:00">
-        May 17, 2018
-      </time>
-    </p>
-  </header>
-  <div class="c-article__summary">
-    Recently I&rsquo;ve been looking at different ways to calculate roll-up aggregations in a tree of data. These calculations can be done with recursive algorithms. Here I show an example in Datomic.
-The datomic schema. Just three attributes: :o/name, :o/parent, and :o/x (the rollup field). [{:db/ident :o/name :db/valueType :db.type/string :db/cardinality :db.cardinality/one :db/unique :db.unique/value :db/id #db/id[:db.part/db] :db.install/_attribute :db.part/db} {:db/ident :o/parent :db/valueType :db.type/ref :db/cardinality :db.cardinality/one :db/id #db/id[:db.part/db] :db.install/_attribute :db.part/db} {:db/ident :o/x :db/valueType :db.
-  </div>
-  
-  <a href="https://mtbkapp.github.io/posts/dataomic-datalog-rollup/content/" class="c-article__btn p-list-article__btn">Read more</a></li>
-  
-</article>
-
-
-
-
-<article class="c-article p-list-article">
-  <header>
-    <h2 class="c-title c-article__title"><a href="https://mtbkapp.github.io/posts/wires-lang/">Wires DSL w/ Clojure Spec</a></h2>
-    <p class="c-article__meta">
-      Posted on
-      <time datetime="2017-10-12T14:19:31-04:00">
-        Oct 12, 2017
-      </time>
-    </p>
-  </header>
-  <div class="c-article__summary">
-    A while ago I found Beautiful Racket by Matthew Butterick. As I worked through the tutorials I found myself wanting to try the same thing with Clojure. Here I&rsquo;m going to show how I implemented the Wires language from Beautiful Racket in Clojure with spec and macros. I think it&rsquo;s not a bad pattern for building complicated macros in Clojure. In this case the macro will take a program written in the Wires language and produce Clojure code that computes the result.
-  </div>
-  
-  <a href="https://mtbkapp.github.io/posts/wires-lang/" class="c-article__btn p-list-article__btn">Read more</a></li>
   
 </article>
 

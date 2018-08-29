@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nes on mtbkapp</title>
+    <link>https://mtbkapp.github.io/tags/nes/</link>
+    <description>Recent content in Nes on mtbkapp</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 Aug 2018 14:19:31 -0400</lastBuildDate>
+    
+	<atom:link href="https://mtbkapp.github.io/tags/nes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Initial NES / 6502 Dev Machine Setup</title>
+      <link>https://mtbkapp.github.io/posts/6502_dev_machine/</link>
+      <pubDate>Wed, 29 Aug 2018 14:19:31 -0400</pubDate>
+      
+      <guid>https://mtbkapp.github.io/posts/6502_dev_machine/</guid>
+      <description>I looked for lists online of tools I&amp;rsquo;ll need to build my Moon Lander game and found the following from FRITZVD. Below is what I&amp;rsquo;ve got setup so far:
+ VirtualBox VM w/ the minimal install of Ubuntu Mate (Mate is lightweight and runs well in a VM) Default gVim from apt My Vim setup from my kapp-vim repo The NESASM assembler, built from source. Gimp for making graphics. Although I think I&amp;rsquo;ll be just using white and black for the initial version.</description>
+    </item>
+    
+    <item>
+      <title>A bit of 6502 Assembly</title>
+      <link>https://mtbkapp.github.io/posts/first_6502/content/</link>
+      <pubDate>Thu, 23 Aug 2018 14:19:31 -0400</pubDate>
+      
+      <guid>https://mtbkapp.github.io/posts/first_6502/content/</guid>
+      <description>For some time I&amp;rsquo;ve been thinking about how fun it would be to build a copy of an old Moon Landing game. I recently discovered that there are tools for writing NES roms from 6502 assembly, C, and JavaScript. I&amp;rsquo;ve got an emulator running on a Raspberry Pi 2 with a SNES controller. I think it would be super fun to build and play a homemade game on it.
+To that end I&amp;rsquo;ve gone through Nick Morgan&amp;rsquo;s Easy 6502 Tutorial and it was a lot of fun.</description>
+    </item>
+    
+  </channel>
+</rss>
