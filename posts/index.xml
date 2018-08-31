@@ -6,10 +6,20 @@
     <description>Recent content in Posts on mtbkapp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 29 Aug 2018 14:19:31 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 31 Aug 2018 10:03:25 -0600</lastBuildDate>
     
 	<atom:link href="https://mtbkapp.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Nerdy Nights Week 2 &amp; 3</title>
+      <link>https://mtbkapp.github.io/posts/nes_6502_part3/</link>
+      <pubDate>Fri, 31 Aug 2018 10:03:25 -0600</pubDate>
+      
+      <guid>https://mtbkapp.github.io/posts/nes_6502_part3/</guid>
+      <description>I read the Nerdy Nights weeks 2 &amp;amp; 3 tutorials. I learned a lot more about the NES Architecture, memory, and how the 6502 processor fits into everything.
+I&amp;rsquo;m not sure why I am surprised by this but it&amp;rsquo;s interesting to me that sending commands to the PPU (picture processing unit) is just writing data to specific memory locations. For some reason I assumed that interfacing with things outside the CPU would be via some specific instructions.</description>
+    </item>
     
     <item>
       <title>Initial NES / 6502 Dev Machine Setup</title>
