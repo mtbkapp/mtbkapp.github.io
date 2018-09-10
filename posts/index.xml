@@ -6,10 +6,20 @@
     <description>Recent content in Posts on mtbkapp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 31 Aug 2018 10:03:25 -0600</lastBuildDate>
+    <lastBuildDate>Mon, 10 Sep 2018 10:01:23 -0600</lastBuildDate>
     
 	<atom:link href="https://mtbkapp.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Nerdy Nights Week 4</title>
+      <link>https://mtbkapp.github.io/posts/nes_6502_part4/</link>
+      <pubDate>Mon, 10 Sep 2018 10:01:23 -0600</pubDate>
+      
+      <guid>https://mtbkapp.github.io/posts/nes_6502_part4/</guid>
+      <description>Today I learned about color palettes and sprites. I also learned about a general strategy for updating graphics. The strategy appears to keep sprite data from $0200 to $02ff. Then on NMI update data to set the tile, position, and several other attributes of sprites that need to change. Then setup a DMA transfer of this memory block to the PPU&amp;rsquo;s sprite memory.
+I was able to edit the demo code to have the tile and positions of a couple of sprites change on every NMI.</description>
+    </item>
     
     <item>
       <title>Nerdy Nights Week 2 &amp; 3</title>
