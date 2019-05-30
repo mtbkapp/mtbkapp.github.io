@@ -6,10 +6,20 @@
     <description>Recent content on mtbkapp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Sep 2018 10:01:23 -0600</lastBuildDate>
+    <lastBuildDate>Wed, 29 May 2019 21:28:49 -0600</lastBuildDate>
     
 	<atom:link href="https://mtbkapp.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>bencode Parsing Part 1</title>
+      <link>https://mtbkapp.github.io/posts/bencode_parse_1/</link>
+      <pubDate>Wed, 29 May 2019 21:28:49 -0600</pubDate>
+      
+      <guid>https://mtbkapp.github.io/posts/bencode_parse_1/</guid>
+      <description>Recently I read about bencode and decided to write a parser for it. I have a bit of experience (but not much) writing grammars for languages for parser generators but bencode has an interesting property that I&amp;rsquo;m not sure can be expressed in a formal language grammar. That is the encoding for a string. A string is an array of bytes and looks like this:
+&amp;lt;ascii encoded size of array&amp;gt;:&amp;lt;byte array&amp;gt; The part I&amp;rsquo;m not sure how to express is the fact the number of bytes in the string is determined by a previously parsed value.</description>
+    </item>
     
     <item>
       <title>Nerdy Nights Week 4</title>

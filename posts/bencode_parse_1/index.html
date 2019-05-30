@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
   
-  <title>A bit of 6502 Assembly</title>
-  <meta property="og:title" content="A bit of 6502 Assembly" />
-  <meta name="twitter:title" content="A bit of 6502 Assembly" />
+  <title>bencode Parsing Part 1</title>
+  <meta property="og:title" content="bencode Parsing Part 1" />
+  <meta name="twitter:title" content="bencode Parsing Part 1" />
   
 
   
@@ -17,7 +17,7 @@
 
   <meta name="author" content=""/>
   <meta property="og:site_name" content="mtbkapp" />
-  <meta property="og:url" content="https://mtbkapp.github.io/posts/first_6502/content/" />
+  <meta property="og:url" content="https://mtbkapp.github.io/posts/bencode_parse_1/" />
 
   
   <meta name="twitter:card" content="summary" />
@@ -57,263 +57,168 @@
 
 <article class="p-article">
   <header>
-    <h1>A bit of 6502 Assembly</h1>
+    <h1>bencode Parsing Part 1</h1>
     <div>
       <div class="c-time">
         Posted on
-        <time datetime="2018-08-23T14:19:31-04:00">
-          Aug 23, 2018
+        <time datetime="2019-05-29T21:28:49-06:00">
+          May 29, 2019
         </time>
       </div>
-      
-      <a href="https://mtbkapp.github.io/tags/nes" class="c-tag">NES</a>
       
     </div>
   </header>
   
   <section id="js-article" class="p-article__body">
-    <p>For some time I&rsquo;ve been thinking about how fun it would be to build a copy of an
-old Moon Landing game. I recently discovered that there are tools for writing
-NES roms from 6502 assembly, C, and JavaScript. I&rsquo;ve got an emulator running on a
-Raspberry Pi 2 with a SNES controller. I think it would be super fun to build and
-play a homemade game on it.</p>
+    
 
-<p>To that end I&rsquo;ve gone through
-<a href="https://skilldrick.github.io/easy6502/">Nick Morgan&rsquo;s Easy 6502 Tutorial</a> and
-it was a lot of fun. For me, the Snake Game took quite a bit to grok.
-Programming in assembly code, to me at least, is very different than using high
-level languages.</p>
+<p>Recently I read about <a href="https://en.wikipedia.org/wiki/Bencode">bencode</a> and
+decided to write a parser for it. I have a bit of experience (but not much)
+writing grammars for languages for parser generators but bencode has an
+interesting property that I&rsquo;m not sure can be expressed in a formal language
+grammar. That is the encoding for a string. A string is an array of bytes and
+looks like this:</p>
 
-<p>One extra exercise I did was to write a program to print all the colors
-available in the Easy 6502 Simulator. The screen is 32x32 pixels and there are
-16 colors. I wanted to print 2 colors per line to fill the whole screen. Below
-is what I came up with. I embeded Nick Morgan&rsquo;s Easy 6502 Simulator.It&rsquo;s
-probably not the greatest but it works. I&rsquo;m not sure why the carry bit is set
-on branching instructions but I need to clear it after each branch or weird
-things happens with <code>adc</code> and probably other instructions I don&rsquo;t understand
-well.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#f92672">&lt;</span>ascii encoded <span style="color:#66d9ef">size</span> <span style="color:#66d9ef">of</span> array<span style="color:#f92672">&gt;</span>:<span style="color:#f92672">&lt;</span>byte array<span style="color:#f92672">&gt;</span></code></pre></div>
 
-<p>If I can I&rsquo;d like to work on this Moon Lander game for 20 minutes a day and
-document the adventure here.</p>
+<p>The part I&rsquo;m not sure how to express is the fact the number of bytes in the
+string is determined by a previously parsed value. I&rsquo;m not sure how to feed
+that in using a grammar. So I decided to do something different and &ldquo;hand roll&rdquo;
+a parser. I have two implementations. Below is an annotated version of the
+first.</p>
 
-<div id="easy6502sim">
-  <style>
-    .widget {
-      width: 600px;
-      margin: 30px auto;
-      font-size: 12px;
-      line-height: 1.5;
-    }
+<p>The interface of this parser is that a function is called when a character is
+read and that function returns the next function that can be called when the
+next character is read and so on. When a function returns a value parsing is
+done and that value is the result of the parse. Like so:</p>
 
-    .buttons {
-      margin: 8px 0;
-    }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">let </span>[p0 (new-parser)
+      p1 (p0 first-char)
+      p2 (p1 second-char)
+      p3 (p2 third-char)
+      ...
+      parsed-val (pn nth-char)]
+  parsed-val)</code></pre></div>
 
-    .start, .length {
-      width: 50px;
-    }
+<p>I got the idea from wanting to read bencoded data from a Java <code>InputStream</code> one
+byte at a time and having parser where I could just feed it one byte at a time.</p>
 
-    .widget pre {
-      margin: 0;
-      padding: 0;
-      background: inherit;
-      border: none;
-    }
+<p>A sequence of characters can be parsed simply by continuing to feed characters
+to the latest parser function until a parser function returns a value. That
+value is the result of the parse.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>parse-seq
+  [xss]
+  (<span style="color:#66d9ef">loop </span>[f (new-parser) [x <span style="color:#f92672">&amp;</span> xs] xss]
+    (<span style="color:#66d9ef">if </span>(and (fn? f) (some? x))
+      (recur (f x) xs)
+      f)))</code></pre></div></p>
 
-    .code {
-      margin: 0 0 6px 0;
-      padding: 6px;
-      border: 1px solid black;
-      width: 420px;
-      height: 290px;
-      font-family: monospace;
-      overflow: auto;
-      float: left;
-    }
+<h3 id="constructor">Constructor</h3>
 
-    .screen {
-      float: right;
-    }
+<p>Here is the constructor that returns a function ready to accept the first byte.
+It just returns the next parser function based which type of thing is next
+indicated by input character <code>c</code>.</p>
 
-    .debugger {
-      border: 1px black solid;
-      margin-top: 6px;
-      padding: 3px;
-      padding-top: 8px;
-      height: 125px;
-      width: 152px;
-      text-align: center;
-      float: right;
-    }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>new-parser
+  []
+  (<span style="color:#66d9ef">fn </span>[c]
+    (cond (= c <span style="color:#e6db74">\i</span>) (int-parser)
+          (= c <span style="color:#e6db74">\d</span>) (dict-parser)
+          (= c <span style="color:#e6db74">\l</span>) (list-parser)
+          (&lt;= <span style="color:#ae81ff">0</span>x30 c <span style="color:#ae81ff">0</span>x39) (string-parser c)
+          <span style="color:#e6db74">:else</span> (throw (IllegalStateException. <span style="color:#e6db74">&#34;Invalid bencode&#34;</span>)))))</code></pre></div>
 
-    .minidebugger {
-      margin: 0;
-      margin-top: 6px;
-      padding: 0;
-      font-family: monospace;
-      font-size: 11px;
-    }
+<h3 id="integer-parser">Integer Parser</h3>
 
-    .monitorControls {
-      width: 587px;
-      clear: both;
-      margin-bottom: 10px;
-      padding: 0;
-    }
+<p>The easiest thing to parse is an integer. It&rsquo;s encoded in ASCII prefixed by an
+<code>i</code> and suffixed by and <code>e</code>. The first parser consumes the <code>i</code> so the next
+character is a digit. This parser keeps returning a function that keeps an
+accumulator in a closure until an <code>e</code> is found. Then it takes all the bytes
+in the accumulator buts them together into a string. Finally it takes that
+string and turns it into the Java long that it represents.</p>
 
-    .monitorControls input {
-      margin-right: 0.5em;
-    }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>int-parser
+  ([] (int-parser []))
+  ([acc]
+   (<span style="color:#66d9ef">fn </span>[c]
+     (<span style="color:#66d9ef">if </span>(= c <span style="color:#e6db74">\e</span>)
+        (Long/valueOf (apply str acc))
+        (int-parser (conj acc c))))))</code></pre></div>
 
-    .monitor {
-      margin: 10px 0;
-      padding: 6px;
-      border: 1px solid #999;
-      background-color: #ddd;
-      width: 587px;
-      height: 100px;
-      overflow: auto;
-      display: none;
-    }
+<h3 id="string-parser">String Parser</h3>
 
-    .messages {
-      margin: 0;
-      padding: 6px;
-      border: 1px solid #999;
-      background-color: #eee;
-      overflow: auto;
-      width: 587px;
-      height: 100px;
-      text-align: left;
-      font-size: 12px;
-      color: #444;
-    }
-  </style>
+<p>As mentioned earlier strings are formatted by first the ascii representation of
+a integer indicating the number of bytes in the string then a &lsquo;:&rsquo; followed by
+the bytes in the string. I broke parsing the length and the string into
+separate parsers. First the string parser delegates to the string length parser.</p>
 
-  <div class="widget">
-  <div class="buttons">
-  <input type="button" value="Assemble" class="assembleButton" />
-  <input type="button" value="Run" class="runButton" />
-  <input type="button" value="Reset" class="resetButton" />
-  <input type="button" value="Hexdump" class="hexdumpButton" />
-  <input type="button" value="Disassemble" class="disassembleButton" />
-  <input type="button" value="Notes" class="notesButton" />
-  </div>
-  <pre style="display: inline; margin: 0; border: 0; padding: 0;">
-  <textarea class="code">
-define rowL $00
-define rowH $01
-define screenL $00
-define screenH $02
-define width $20
-define colors $10
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>string-parser
+  [c0]
+  (string-len-parser [c0]))</code></pre></div>
 
-jsr init
-jsr allColors
-jmp end
+<p>Next is the string length parser works exactly the same as the <code>int-parser</code>
+except that it looks for a &lsquo;:&rsquo; to know when the integer is done instead of an
+&lsquo;e&rsquo; and then delegates to the string value parser to finish the string parsing.</p>
 
-init:
-  lda #screenL
-  sta rowL
-  lda #screenH
-  sta rowH
-  rts
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>string-len-parser
+  [acc]
+  (<span style="color:#66d9ef">fn </span>[c]
+    (<span style="color:#66d9ef">if </span>(= c <span style="color:#e6db74">\:</span>)
+      (string-val-parser [] (Long/valueOf (apply str acc)))
+      (string-len-parser (conj acc c)))))</code></pre></div>
 
-; draws 2 lines on the screen for each color starting at the top and filling whole screen
-allColors:
-  ldx #$00 ; X holds the current color
-allColorsLoop:
-  txa
-  jsr drawLine
-  jsr nextRow
-  txa
-  jsr drawLine
-  jsr nextRow
-  inx
-  cpx #colors
-  bne allColorsLoop
-  clc
-  rts
+<p>Lastly the string value parser reads the string by counting down until the
+indicated number of characters have been consumed.</p>
 
-; draws the color in A in a line of color width long on the screen starting at rowL/rowH
-drawLine:
-  ldy #$00 ; the offset in bytes to the rowL/rowH
-drawLineLoop:
-  sta (rowL), Y
-  iny
-  cpy #width
-  bne drawLineLoop
-  clc
-  rts
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>string-val-parser
+  [acc i]
+  (<span style="color:#66d9ef">if </span>(&lt; <span style="color:#ae81ff">1</span> i)
+    (string-val-parser (conj acc c) (dec i))
+    (apply str (conj acc c))))</code></pre></div>
 
-; increments the screen address at rowL/rowH down to the next row
-nextRow:
-  lda #width
-  adc rowL
-  sta rowL
-  bcs carry
-  rts
-carry:
-  clc ; weird things happen if the carry bit isn't cleared after branching
-  inc rowH
-  rts
+<h3 id="list-parser">List Parser</h3>
 
-end:
-  </textarea>
-  </pre>
+<p>A list parser has to keep track of the parse of each element in the list by
+keeping a reference it&rsquo;s the parser, but only one element at a time.  It must
+detect when the parse is finished and keep the result in an accumulator. This is
+done by keeping the parser of the current element in a closure along with the
+list&rsquo;s accumulator.</p>
 
-   <canvas class="screen" width="160" height="160"></canvas>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>list-parser
+  ([]
+   (<span style="color:#66d9ef">fn </span>[c]
+     (<span style="color:#66d9ef">if </span>(= c <span style="color:#e6db74">\e</span>)
+       []
+       (list-parser [] ((new-parser) c)))))
+  ([acc parser]
+   (<span style="color:#66d9ef">fn </span>[c]
+     (<span style="color:#66d9ef">if </span>(fn? parser)
+       (list-parser acc (parser c))
+       (<span style="color:#66d9ef">let </span>[next-acc (conj acc parser)]
+         (<span style="color:#66d9ef">if </span>(= c <span style="color:#e6db74">\e</span>)
+           next-acc
+           (list-parser next-acc ((new-parser) c))))))))</code></pre></div>
 
-  <div class="debugger">
-  <input type="checkbox" class="debug" name="debug" />
-  <label for="debug">Debugger</label>
-  <div class="minidebugger"></div>
-  <div class="buttons">
-  <input type="button" value="Step" class="stepButton" />
-  <input type="button" value="Jump to ..." class="gotoButton" />
-  </div>
-  </div>
+<h3 id="dict-parser">Dict Parser</h3>
 
-<p><div class="monitorControls">
-  <label for="monitoring">Monitor</label>
-  <input type="checkbox" class="monitoring" name="monitoring" /></p>
+<p>Because dictionaries are encoded the same as lists except for the first byte
+a dict parser can delegate to a list parser. When the end of the list is found
+the dict parser simply converts the list into a map.</p>
 
-<p><label for="start">Start: $</label>
-  <input type="text" value="0" class="start" name="start" />
-  <label for="length">Length: $</label>
-  <input type="text" value="ff" class="length" name="length" />
-  </div>
-  <div class="monitor"><pre><code></code></pre></div>
-  <div class="messages"><pre><code></code></pre></div></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#66d9ef">defn </span>dict-parser
+  ([] (dict-parser (list-parser)))
+  ([parser]
+   (<span style="color:#66d9ef">fn </span>[c]
+     (<span style="color:#66d9ef">let </span>[ls (parser c)]
+       (<span style="color:#66d9ef">if </span>(fn? ls)
+         (dict-parser ls)
+         (into {} (map vec) (partition <span style="color:#ae81ff">2</span> ls)))))))</code></pre></div>
 
-<p><div class="notes" style="display: none">Notes:
-Memory location $fe contains a new random byte on every instruction.
-Memory location $ff contains the ascii code of the last key pressed.</p>
+<h3 id="bencode">bencode</h3>
 
-<p>Memory locations $200 to $5ff map to the screen pixels. Different values will
-draw different colour pixels. The colours are:</p>
-
-<p>$0: Black
-$1: White
-$2: Red
-$3: Cyan
-$4: Purple
-$5: Green
-$6: Blue
-$7: Yellow
-$8: Orange
-$9: Brown
-$a: Light red
-$b: Dark grey
-$c: Grey
-$d: Light green
-$e: Light blue
-$f: Light grey
-  </div>
-  <script src="../es5-shim.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script src="../easy6502.js"></script>
-</div></p>
+<p>bencode only has these four types of values. bencode is used by BitTorrent for
+it&rsquo;s meta data files and in Clojure&rsquo;s nREPL protocol. I&rsquo;m more interested in
+the later. I&rsquo;m not sure why that encoding is used though.</p>
 
   </section>
   <footer>
@@ -322,12 +227,11 @@ $f: Light grey
       <div class="c-pagination__ctrl">
         <div class="c-pagination__newer">
           
-          <a href="https://mtbkapp.github.io/posts/dataomic-datalog-rollup/content/">Newer</a>
+          <a href="https://mtbkapp.github.io/posts/nes_6502_part4/">Newer</a>
           
         </div>
         <div class="c-pagination__older">
           
-          <a href="https://mtbkapp.github.io/posts/6502_dev_machine/">Older</a>
           
         </div>
       </div>
