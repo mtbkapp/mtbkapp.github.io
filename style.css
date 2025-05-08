@@ -1,5 +1,11 @@
+header {
+  margin: 20px 0;
+  font-size: 30px;
+}
+
 body {
   background-color: #e3e3e3;
+  font-size: 12pt;
 }
 
 #content {
@@ -11,18 +17,12 @@ body {
   padding: 35px;
 }
 
-
-header {
-  margin: 20px 0;
-  font-size: 20px;
-}
-
 .list-link {
   display: block;
 }
 
 a:link {
-  color: black;
+  color: grey;
 }
 
 a:visited {
@@ -31,4 +31,10 @@ a:visited {
 
 a:hover {
   color: grey; 
+}
+
+img {
+  display: block;
+  width: 75%;
+  margin: 20px auto;
 }

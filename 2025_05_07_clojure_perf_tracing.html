@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="style.css" rel="stylesheet" />
+    <link href="prism.css" rel="stylesheet" />
+    <title>Clojure Perf Tracing</title>
+  </head>
+  <body>
+    <div id="content">
+      <header>
+        <a href="index.html">mtbkapp /// blog, web, thing</a>
+      </header>
+      <div>
+        The other day I wanted a simple way to find some slow Clojure code. I
+        could have used <a href="https://github.com/clojure-goes-fast/clj-async-profiler">clj-async-profiler</a>
+        but I wrote this bit of code instead.
+
+        <pre><code class="language-clojure">
+(def ^:dynamic *trace* (atom nil))
+
+(defmacro with-trace
+  [&amp; body]
+  `(binding [*trace* (atom {:labels [] :times []})]
+     ~@body))
+
+(defmacro with-timer
+  [label & body]
+  `(let [; add the new label to the stack
+         x# (swap! *trace* update :labels conj ~label) 
+         ; store the start time
+         start# (System/nanoTime) 
+         ; run the code being timed and save the return value
+         r# (do ~@body) 
+         ; calc the duration
+         duration# (/ (- (System/nanoTime) start#) 1000000.0)] 
+     ; add the duration to the :times section
+     ; pop the label
+     (swap! *trace* (fn [x#]
+                      (-> x#
+                          (update :times conj [(get x# :labels) duration#])
+                          (update :labels pop))))
+     ; don't forget the return value. 
+     r#))
+
+(defn get-trace
+  []
+  @*trace*)
+        </code></pre>
+
+        Example usage:
+        <pre><code class="language-clojure">
+(with-trace
+  (with-timer :a
+    (Thread/sleep 20)
+    (with-timer :b
+      (Thread/sleep 10)
+      (with-timer :c
+        (Thread/sleep 30))))
+  (with-timer :d
+    (Thread/sleep 200))
+  (prn (get-trace)))
+        </code></pre>
+
+        Example usage:
+        <pre><code class="language-clojure">
+([(:d) 205.122625] 
+ [(:a) 73.29775]
+ [(:b :a) 47.705291] 
+ [(:c :b :a) 35.056167])</code></pre>
+
+        <h3>How it works</h3>
+        The <code>with-trace</code> macro sets up the dynamic scope variable
+        with a fresh <code>atom</code> to hold the state over time. It stores
+        <code>:labels</code> and <code>:times</code>. The former stores a stack 
+        labels from the <code>with-timer</code> sections. The latter stores how 
+        long each <code>with-timer</code> section took to execute along with 
+        the stack of labels.
+      </div>
+    </div>
+    <script src="prism.js"></script>
+  </body>
+</html>
